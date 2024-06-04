@@ -4,40 +4,66 @@ using UnityEngine;
 
 public class Conveyor : MonoBehaviour
 {
-    public float speed = 3;
-    public float resetTime = 10;
-    public float currentTime = 0;
-    public GameObject pushObj;
-    public AudioClip clip;
-    Vector3 pushObjOriginPos;
+    public Transform Box;
+    public Vector3 direction;
+    public float speed;
+    public int isActive;
+    public int _direction;
+    public bool isBoxIn;
 
-
-    public void TurnOnConveyor()
+    // Start is called before the first frame update
+    void Start()
     {
-        pushObjOriginPos = pushObj.transform.localPosition;
-        pushObj.SetActive(true);
-
-        StartCoroutine(CoMovePushObject());
-
+        isBoxIn = false;
+        _direction = 1;
     }
 
-    IEnumerator CoMovePushObject()
+    // Update is called once per frame
+    void Update()
     {
-        while (true)
+    }
+
+
+    public void OnConveyorBtnClkEvent()
+    {
+        isActive = 1;
+        StartCoroutine(Moving(direction,speed));
+    }
+    public void OffConveyorBtnClkEvent()
+    {
+        isActive = 0;
+    }
+
+    public void ReverseConveyorDirectionBtnClkEvent()
+    {
+        _direction = _direction * -1;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Box"))
         {
-            currentTime += Time.deltaTime;
+            Box = other.transform;
+            isBoxIn = true;
+        }
+    }
 
-            if(currentTime > resetTime)
-            {
-                currentTime = 0;
-                pushObj.transform.localPosition = pushObjOriginPos;
-                //pushObj.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
+    IEnumerator Moving(Vector3 direction, float speed)
+    {
+        while (isBoxIn)
+        {
+            Box.GetComponent<Rigidbody>().velocity = direction * speed * _direction;
+            if (isActive == 0)
                 break;
-            }
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
 
-            pushObj.GetComponent<Rigidbody>().velocity = new Vector3(1,0,0);
-
-            yield return new WaitForSeconds(Time.deltaTime);
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Box"))
+        {
+            isBoxIn = false;
         }
     }
 }
