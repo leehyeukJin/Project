@@ -6,7 +6,7 @@ public class ConveyorDrag : MonoBehaviour
 {
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("MetalObject"))
+        if(other.gameObject.layer == LayerMask.NameToLayer("Box"))
         {
             other.transform.SetParent(transform);
         }
@@ -14,7 +14,7 @@ public class ConveyorDrag : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("MetalObject"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Box"))
         {
             other.transform.SetParent(null);
         }
