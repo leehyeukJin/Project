@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Sensor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Cylinder cylinder;
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("Box"))
+        {
+            cylinder.Onsensor();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //PLC로 데이터 전송
+
+
 }

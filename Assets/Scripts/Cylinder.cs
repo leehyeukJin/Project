@@ -58,18 +58,18 @@ public class Cylinder : MonoBehaviour
     public void Onsensor()
     {
         startIndex = 3;
+        OnActivePistonBtnClkEvent();
     }
 
     IEnumerator Pistons(Vector3 direction,float speed,float distance)
     {
         active.interactable = false;
         reverse.interactable = false;
+
         while (true)
         {
             time += 0.01f;
-            if (time > distance / speed)
-                break;
-            if (startIndex == 3)
+            if (time > distance / speed || startIndex == 3)
                 break;
             piston.position = Vector3.Lerp(Origin, Origin + distance * direction, time * speed / distance);
             yield return new WaitForSeconds(0.01f);
@@ -79,7 +79,7 @@ public class Cylinder : MonoBehaviour
             startIndex = 0;
             while(true)
             {
-                time -= 0.01f;
+                time += 0.01f;
                 if (time <= 0)
                     break;
                 piston.position = Vector3.Lerp(Origin, Origin + distance * direction, time * speed / distance);
