@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Sensor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Cylinder 스크립트를 연결할 변수
+    public Cylinder cylinder;
 
-    // Update is called once per frame
-    void Update()
+    // 충돌이 감지되었을 때 호출되는 함수
+    private void OnTriggerEnter(Collider other)
     {
         
+        if (other.gameObject.layer == LayerMask.NameToLayer("Box"))
+        {
+            print("gggggg");
+            cylinder.Onsensor();
+        }
     }
 }
