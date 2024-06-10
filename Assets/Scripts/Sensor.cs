@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class Sensor : MonoBehaviour
 {
-// <<<<<<< HEAD
-
-    //PLC로 데이터 전송
-
-// =======
-    // Cylinder 스크립트를 연결할 변수
     public Cylinder cylinder;
+    private bool isSensorActive = false;
 
-    // 충돌이 감지되었을 때 호출되는 함수
     private void OnTriggerEnter(Collider other)
     {
-        
-        if (other.gameObject.layer == LayerMask.NameToLayer("Box"))
+        if (!isSensorActive && other.gameObject.layer == LayerMask.NameToLayer("Box"))
         {
             print("gggggg");
+            isSensorActive = true; // 센서가 작동 중임을 표시
             cylinder.Onsensor();
         }
     }
-// >>>>>>> df070744f43f0e3721ccd1e4ac4bcb19d7db64b3
+
+    public void DeactivateSensor()
+    {
+        isSensorActive = false; // 센서 비활성화
+    }
 }
