@@ -61,10 +61,10 @@ public class MxComponent : MonoBehaviour
             Sensor(Sensor2, "X2");
             Sensor(Sensor3, "X3");
             Sensor(Sensor4, "X4");
-            /*Sensor(Sensor5, "X5");
+            Sensor(Sensor5, "X5");
             Sensor(Sensor6, "X6");
             Sensor(Sensor7, "X7");
-            Sensor(Sensor8, "X8");*/
+            Sensor(Sensor8, "X8");
         }
     }
 
