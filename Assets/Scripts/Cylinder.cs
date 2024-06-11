@@ -22,7 +22,7 @@ public class Cylinder : MonoBehaviour
     public int endIndex;
     float time = 0;
     public int sensing;
-    public float location = 0;
+    public float location;
 
     void Start()
     {
