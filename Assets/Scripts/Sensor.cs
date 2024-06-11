@@ -4,21 +4,64 @@ using UnityEngine;
 
 public class Sensor : MonoBehaviour
 {
-    public Cylinder cylinder;
-    private bool isSensorActive = false;
+    public int isSensing;
+    public int PLCOutput;
+    public int isChange;
+
+    void Start()
+    {
+        isSensing = 0;
+        PLCOutput = 0;
+        isChange = 0;
+        
+    }
+
+    void Update()
+    {
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isSensorActive && other.gameObject.layer == LayerMask.NameToLayer("Box"))
+        if(other.gameObject.layer == LayerMask.NameToLayer("CylinderPoint"))
         {
-            print("gggggg");
-            isSensorActive = true; // 센서가 작동 중임을 표시
-            cylinder.Onsensor();
+            if (isSensing == 0)
+            { 
+                isChange = 1;
+                PLCOutput = 1;
+                isSensing = 1;
+            }
+        }
+        if (other.gameObject.layer == LayerMask.NameToLayer("Box"))
+        {
+            if (isSensing == 0)
+            {
+                isChange = 1;
+                PLCOutput = 1;
+                isSensing = 1;
+            }
         }
     }
 
-    public void DeactivateSensor()
+    private void OnTriggerExit(Collider other)
     {
-        isSensorActive = false; // 센서 비활성화
+        if (other.gameObject.layer == LayerMask.NameToLayer("CylinderPoint"))
+        {
+            if (isSensing == 1)
+            {
+                isChange = 1;
+                PLCOutput = 0;
+                isSensing = 0;
+            }
+        }
+        if (other.gameObject.layer == LayerMask.NameToLayer("Box"))
+        {
+            if (isSensing == 1)
+            {
+                isChange = 1;
+                PLCOutput = 0;
+                isSensing = 0;
+            }
+        }
     }
 }
