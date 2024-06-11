@@ -13,18 +13,19 @@ public class MxComponent : MonoBehaviour
     bool isTCPConnecting;
     bool isPLCConnecting;
 
-    public GameObject pushCylinder;
-    public GameObject ShieldCylinder;
+    public GameObject Cylinder1;
+    public GameObject Cylinder2;
+    public GameObject Cylinder3;
     public GameObject Conveyor;
 
-    public GameObject pushCylinderSensor1;
-    public GameObject pushCylinderSensor2;
-    public GameObject pushCylinderSensor3;
-    public GameObject pushCylinderSensor4;
-    public GameObject ShieldCylinderSensor1;
-    public GameObject PushSensor;
-    public GameObject ShieldSensor1;
-    public GameObject ShieldSensor2;
+    public GameObject Sensor1;
+    public GameObject Sensor2;
+    public GameObject Sensor3;
+    public GameObject Sensor4;
+    public GameObject Sensor5;
+    public GameObject Sensor6;
+    public GameObject Sensor7;
+    public GameObject Sensor8;
 
     public string preYDataBlock;
     public string yDataBlock;
@@ -46,23 +47,24 @@ public class MxComponent : MonoBehaviour
             Read();
             if(preYDataBlock != yDataBlock)
             {
-                pushCylinder.GetComponent<Cylinder>().PLCInput1 = yDataBlock[1];
-                pushCylinder.GetComponent<Cylinder>().PLCInput2 = yDataBlock[20];
-                ShieldCylinder.GetComponent<Cylinder>().PLCInput1 = yDataBlock[21];
-                ShieldCylinder.GetComponent<Cylinder>().PLCInput2 = yDataBlock[23];
-                Conveyor.GetComponent<Conveyor>().PLCInput1 = yDataBlock[160];
-                Conveyor.GetComponent<Conveyor>().PLCInput2 = yDataBlock[0];
+                Cylinder1.GetComponent<Cylinder>().PLCInput1 = yDataBlock[2];
+                Cylinder1.GetComponent<Cylinder>().PLCInput2 = yDataBlock[12];
+                Cylinder2.GetComponent<Cylinder>().PLCInput1 = yDataBlock[3];
+                Cylinder2.GetComponent<Cylinder>().PLCInput2 = yDataBlock[13];
+                /*Cylinder3.GetComponent<Cylinder>().PLCInput1 = yDataBlock[4];
+                Cylinder3.GetComponent<Cylinder>().PLCInput2 = yDataBlock[14];*/
+                Conveyor.GetComponent<Conveyor>().PLCInput1 = yDataBlock[1];
                 print(yDataBlock);
             }
             
-            Sensor(pushCylinderSensor1, "X10");
-            Sensor(pushCylinderSensor2, "X11");
-            Sensor(pushCylinderSensor3, "X12");
-            Sensor(pushCylinderSensor4, "X13");
-            Sensor(ShieldCylinderSensor1, "X30");
-            Sensor(PushSensor, "X20");
-            Sensor(ShieldSensor1, "X1");
-            Sensor(ShieldSensor2, "X2");
+            /*Sensor(Sensor1, "X1");*/
+            Sensor(Sensor2, "X2");
+            Sensor(Sensor3, "X3");
+            Sensor(Sensor4, "X4");
+            /*Sensor(Sensor5, "X5");
+            Sensor(Sensor6, "X6");
+            Sensor(Sensor7, "X7");
+            Sensor(Sensor8, "X8");*/
         }
     }
 
