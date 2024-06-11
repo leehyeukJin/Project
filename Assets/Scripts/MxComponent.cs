@@ -57,7 +57,7 @@ public class MxComponent : MonoBehaviour
                 print(yDataBlock);
             }
             
-            /*Sensor(Sensor1, "X1");*/
+            Sensor(Sensor1, "X1");
             Sensor(Sensor2, "X2");
             Sensor(Sensor3, "X3");
             Sensor(Sensor4, "X4");
@@ -82,8 +82,9 @@ public class MxComponent : MonoBehaviour
         if (Sensor.GetComponent<Sensor>().isChange == 1)
         {
             Write($"W,{component},{Sensor.GetComponent<Sensor>().PLCOutput},");
-                Sensor.GetComponent<Sensor>().isChange = 0;
-            }
+            print($"W,{component},{Sensor.GetComponent<Sensor>().PLCOutput},");
+            Sensor.GetComponent<Sensor>().isChange = 0;
+        }
     }
     public void Read()
     {
