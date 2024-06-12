@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Sensor : MonoBehaviour
@@ -46,6 +47,29 @@ public class Sensor : MonoBehaviour
         if (name.Contains("Sensor8"))
         {
             mxComponent.Write($"R,D22");
+            mxComponent.LoadingCylinderHY.GetComponent<LoadingCylinder>().distance = mxComponent.decimalNumbers[7];
+            
+            /*  ÁÂÇ¥ ¿¹½Ã
+            distance = mxComponent.decimalNumbers[0]; // D22 : »óÀÚ1 xÃà ÁÂÇ¥
+            distance = mxComponent.decimalNumbers[1]; // D23 : »óÀÚ1 yÃà ÁÂÇ¥
+            distance = mxComponent.decimalNumbers[2]; // D24 : »óÀÚ1 zÃà ÁÂÇ¥
+            distance = mxComponent.decimalNumbers[10]; // D32 : »óÀÚ2 xÃà ÁÂÇ¥
+            distance = mxComponent.decimalNumbers[11]; // D33 : »óÀÚ2 yÃà ÁÂÇ¥
+            distance = mxComponent.decimalNumbers[12]; // D34 : »óÀÚ2 zÃà ÁÂÇ¥ */
+
+            if (mxComponent.decimalNumbers[5] == 1)
+            {
+                mxComponent.LoadingCylinderX.GetComponent<LoadingCylinder>().distance = mxComponent.decimalNumbers[0];
+                mxComponent.LoadingCylinderY.GetComponent<LoadingCylinder>().distance = mxComponent.decimalNumbers[1];
+                mxComponent.LoadingCylinderZ.GetComponent<LoadingCylinder>().distance = mxComponent.decimalNumbers[2];
+            }
+
+            if (mxComponent.decimalNumbers[5] == 0)
+            {
+                mxComponent.LoadingCylinderX.GetComponent<LoadingCylinder>().distance = mxComponent.decimalNumbers[10];
+                mxComponent.LoadingCylinderY.GetComponent<LoadingCylinder>().distance = mxComponent.decimalNumbers[11];
+                mxComponent.LoadingCylinderZ.GetComponent<LoadingCylinder>().distance = mxComponent.decimalNumbers[12];
+            }
         }
     }
 

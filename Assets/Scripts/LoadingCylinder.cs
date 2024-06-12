@@ -60,7 +60,7 @@ public class LoadingCylinder : MonoBehaviour
 
     void Update()
     {
-        // 트리거 기반으로 업데이트 로직을 대체하므로, 여기서는 필요 없습니다.
+        
     }
 
     public void OnActivePistonBtnClkEvent()
