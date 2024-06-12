@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sensor : MonoBehaviour
 {
+    public MxComponent mxComponent;
     public int isSensing;
     public int PLCOutput;
     public int isChange;
@@ -40,6 +41,11 @@ public class Sensor : MonoBehaviour
                 PLCOutput = 1;
                 isSensing = 1;
             }
+        }
+
+        if (name.Contains("Sensor8"))
+        {
+            mxComponent.Write($"R,D22");
         }
     }
 

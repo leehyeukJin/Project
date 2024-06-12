@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class MxComponent : MonoBehaviour
 {
@@ -32,6 +35,7 @@ public class MxComponent : MonoBehaviour
 
     public string preYDataBlock;
     public string yDataBlock;
+    public List<int> decimalNumbers = new List<int>();
 
     void Start()
     {
@@ -100,6 +104,46 @@ public class MxComponent : MonoBehaviour
         byte[] buffer = new byte[320];
         stream.Read(buffer, 0, 320);
         yDataBlock = Encoding.ASCII.GetString(buffer);
+
+        if(yDataBlock.Contains("D"))
+        {
+            yDataBlock = Encoding.ASCII.GetString(buffer);
+
+            // 1. 16개 문자씩 자른다.
+            List<string> splitStrings = SplitString(yDataBlock.Substring(2), 16);
+
+            // 2. 뒤집는다. (reverse)
+            List<string> reversedStrings = ReverseStrings(splitStrings);
+
+            // 3. 2진수 -> 10진수
+            decimalNumbers = ConvertBinaryToDecimal(reversedStrings);
+
+            // 결과 출력
+            foreach (var number in decimalNumbers)
+            {
+                print(number);
+            }
+        }
+    }
+
+    static List<string> SplitString(string str, int chunkSize)
+    {
+        var result = new List<string>();
+        for (int i = 0; i < str.Length; i += chunkSize)
+        {
+            result.Add(str.Substring(i, Math.Min(chunkSize, str.Length - i)));
+        }
+        return result;
+    }
+
+    static List<string> ReverseStrings(List<string> strings)
+    {
+        return strings.Select(s => new string(s.Reverse().ToArray())).ToList();
+    }
+
+    static List<int> ConvertBinaryToDecimal(List<string> binaryStrings)
+    {
+        return binaryStrings.Select(bin => Convert.ToInt32(bin, 2)).ToList();
     }
 
     public void Write(string word)
