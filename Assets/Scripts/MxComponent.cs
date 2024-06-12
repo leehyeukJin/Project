@@ -15,7 +15,10 @@ public class MxComponent : MonoBehaviour
 
     public GameObject Cylinder1;
     public GameObject Cylinder2;
-    public GameObject Cylinder3;
+    public GameObject LoadingCylinderHY;
+    public GameObject LoadingCylinderX;
+    public GameObject LoadingCylinderY;
+    public GameObject LoadingCylinderZ;
     public GameObject Conveyor;
 
     public GameObject Sensor1;
@@ -51,8 +54,14 @@ public class MxComponent : MonoBehaviour
                 Cylinder1.GetComponent<Cylinder>().PLCInput2 = yDataBlock[12];
                 Cylinder2.GetComponent<Cylinder>().PLCInput1 = yDataBlock[3];
                 Cylinder2.GetComponent<Cylinder>().PLCInput2 = yDataBlock[13];
-                /*Cylinder3.GetComponent<Cylinder>().PLCInput1 = yDataBlock[4];
-                Cylinder3.GetComponent<Cylinder>().PLCInput2 = yDataBlock[14];*/
+                LoadingCylinderHY.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[20];
+                LoadingCylinderHY.GetComponent<LoadingCylinder>().PLCInput2 = yDataBlock[30];
+                LoadingCylinderX.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[21];
+                LoadingCylinderX.GetComponent<LoadingCylinder>().PLCInput2 = yDataBlock[31];
+                LoadingCylinderY.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[22];
+                LoadingCylinderY.GetComponent<LoadingCylinder>().PLCInput2 = yDataBlock[32];
+                LoadingCylinderZ.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[23];
+                LoadingCylinderZ.GetComponent<LoadingCylinder>().PLCInput2 = yDataBlock[33];
                 Conveyor.GetComponent<Conveyor>().PLCInput1 = yDataBlock[1];
                 print(yDataBlock);
             }

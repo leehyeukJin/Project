@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LodingCylinder : MonoBehaviour
+public class LoadingCylinder : MonoBehaviour
 {
 
     public Transform piston;
