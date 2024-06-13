@@ -23,11 +23,6 @@ public class Rotate : MonoBehaviour
     float time = 0;
     public int sensing;
     public float angle;
-    public int ledCheck1;
-    public int ledCheck2;
-
-    public GameObject LED1;
-    public GameObject LED2;
 
     void Start()
     {
@@ -43,46 +38,22 @@ public class Rotate : MonoBehaviour
     {
         if (PLCInput1 == '1')
         {
-            if (ledCheck1 == 0)
-            {
-                ledCheck1 = 1;
-                LED1.GetComponent<Image>().color = Color.green;
-            }
             if (isRotating == 0)
             {
                 isRotating = 1;
                 StartCoroutine(FrontPLCRotate());
             }
         }
-        if (PLCInput1 == '0')
-        {
-            if (ledCheck1 == 1)
-            {
-                ledCheck1 = 0;
-                LED1.GetComponent<Image>().color = Color.white;
-            }
-        }
+
         if (PLCInput2 == '1')
         {
-            if (ledCheck2 == 0)
-            {
-                ledCheck2 = 1;
-                LED2.GetComponent<Image>().color = Color.green;
-            }
             if (isRotating == 0)
             {
                 isRotating = 1;
                 StartCoroutine(BackPLCRotate());
             }
         }
-        if (PLCInput2 == '0')
-        {
-            if (ledCheck2 == 1)
-            {
-                ledCheck2 = 0;
-                LED2.GetComponent<Image>().color = Color.white;
-            }
-        }
+
     }
 
     public void OnActiveRotateBtnClkEvent()
