@@ -37,6 +37,7 @@ public class MxComponent : MonoBehaviour
     public string preYDataBlock;
     public string yDataBlock;
     public List<int> decimalNumbers = new List<int>();
+    public bool isDReceived = false;
 
     void Start()
     {
@@ -143,6 +144,8 @@ public class MxComponent : MonoBehaviour
             {
                 print(number);
             }
+
+            isDReceived = true;
         }
     }
 
