@@ -46,7 +46,7 @@ namespace MxComponentServer
                 {
                     case "R":
                         {
-                            if(splitOutput[1] == "        ")
+                            if (splitOutput[1] == "        ")
                             {
                                 buffer = Encoding.ASCII.GetBytes(ydata);
                                 stream.Write(buffer, 0, buffer.Length);
@@ -54,7 +54,7 @@ namespace MxComponentServer
                             if (splitOutput[1].Contains("D"))
                             {
                                 GetDDataBlock();
-                                
+
                                 buffer = Encoding.ASCII.GetBytes("D," + ddata);
                                 stream.Write(buffer, 0, buffer.Length);
                             }
