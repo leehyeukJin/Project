@@ -8,8 +8,6 @@ using UnityEngine.UI;
 public class LoadingCylinder : MonoBehaviour
 {
     public Transform piston;
-    public Transform box;  // Box의 Transform을 추가합니다.
-    public string boxLayerName = "Box"; // 할당할 레이어 이름
     Vector3 Origin;
     public Button active;
     public Button reverse;
@@ -31,30 +29,6 @@ public class LoadingCylinder : MonoBehaviour
     public float location;
     public int isChange;
     public int isActivate;
-
-    void Awake()
-    {
-        // 레이어 이름을 통해 레이어 번호를 가져옴
-        int boxLayer = LayerMask.NameToLayer(boxLayerName);
-
-        // 모든 게임 오브젝트를 검색
-        GameObject[] allObjects = FindObjectsOfType<GameObject>();
-
-        // 특정 레이어를 가진 첫 번째 게임 오브젝트를 찾아 box 변수에 할당
-        foreach (GameObject obj in allObjects)
-        {
-            if (obj.layer == boxLayer)
-            {
-                box = obj.transform;
-                break;
-            }
-        }
-
-        if (box == null)
-        {
-            Debug.LogError($"Box object in layer '{boxLayerName}' not found!");
-        }
-    }
 
     void Start()
     {
@@ -171,17 +145,6 @@ public class LoadingCylinder : MonoBehaviour
         Origin = piston.position;
         time = 0;
         print("Activate Cylinder");
-
-        if (box != null)
-        {
-            // Box를 piston의 자식으로 설정합니다.
-            box.SetParent(piston);
-        }
-        else
-        {
-            Debug.LogError("Box is not assigned!");
-        }
-
         StartCoroutine(Pistons(direction, speed, distance));
     }
 
@@ -190,17 +153,6 @@ public class LoadingCylinder : MonoBehaviour
         Origin = piston.position;
         time = 0;
         print("Reverse Activate Cylinder");
-
-        if (box != null)
-        {
-            // Box를 piston의 자식에서 해제합니다.
-            box.SetParent(null);
-        }
-        else
-        {
-            Debug.LogError("Box is not assigned!");
-        }
-
         StartCoroutine(Pistons(-direction, speed, distance));
     }
 
