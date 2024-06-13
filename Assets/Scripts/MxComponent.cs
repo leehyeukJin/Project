@@ -18,6 +18,7 @@ public class MxComponent : MonoBehaviour
 
     public GameObject Cylinder1;
     public GameObject Cylinder2;
+    public GameObject Cylinder3;
     public GameObject LoadingCylinderHY;
     public GameObject LoadingCylinderX;
     public GameObject LoadingCylinderY;
@@ -58,8 +59,10 @@ public class MxComponent : MonoBehaviour
                 Cylinder1.GetComponent<Cylinder>().PLCInput2 = yDataBlock[12];
                 Cylinder2.GetComponent<Cylinder>().PLCInput1 = yDataBlock[3];
                 Cylinder2.GetComponent<Cylinder>().PLCInput2 = yDataBlock[13];
-                LoadingCylinderHY.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[20];
-                LoadingCylinderHY.GetComponent<LoadingCylinder>().PLCInput2 = yDataBlock[30];
+                Cylinder3.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[4];
+                Cylinder3.GetComponent<LoadingCylinder>().PLCInput2 = yDataBlock[14];
+                LoadingCylinderHY.GetComponent<LoadingCylinder>().PLCInput3 = yDataBlock[20];
+                LoadingCylinderHY.GetComponent<LoadingCylinder>().PLCInput4 = yDataBlock[30];
                 LoadingCylinderX.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[21];
                 LoadingCylinderX.GetComponent<LoadingCylinder>().PLCInput2 = yDataBlock[31];
                 LoadingCylinderY.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[22];
@@ -78,6 +81,12 @@ public class MxComponent : MonoBehaviour
             Sensor(Sensor6, "X6");
             Sensor(Sensor7, "X7");
             Sensor(Sensor8, "X8");
+
+            Transfer(LoadingCylinderHY, "X10", "X20");
+            Transfer(LoadingCylinderX, "X11", "X21");
+            Transfer(LoadingCylinderY, "X12", "X22");
+            Transfer(LoadingCylinderZ, "X13", "X23");
+            Transfer(Cylinder3, "X14", "X24");
         }
     }
 
@@ -97,6 +106,17 @@ public class MxComponent : MonoBehaviour
             Write($"W,{component},{Sensor.GetComponent<Sensor>().PLCOutput},");
             print($"W,{component},{Sensor.GetComponent<Sensor>().PLCOutput},");
             Sensor.GetComponent<Sensor>().isChange = 0;
+        }
+    }
+    public void Transfer(GameObject Transfer, string component1, string component2)
+    {
+        if (Transfer.GetComponent<LoadingCylinder>().isChange == 1)
+        {
+            Write($"W,{component1},{Transfer.GetComponent<LoadingCylinder>().FrontEndIndex},");
+            print($"W,{component1},{Transfer.GetComponent<LoadingCylinder>().FrontEndIndex},");
+            Write($"W,{component2},{Transfer.GetComponent<LoadingCylinder>().BackEndIndex},");
+            print($"W,{component2},{Transfer.GetComponent<LoadingCylinder>().BackEndIndex},");
+            Transfer.GetComponent<LoadingCylinder>().isChange = 0;
         }
     }
     public void Read()

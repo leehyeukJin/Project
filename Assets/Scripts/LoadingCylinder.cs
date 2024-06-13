@@ -17,13 +17,19 @@ public class LoadingCylinder : MonoBehaviour
     public int _direction;
     public float speed;
     public float distance;
+    public float HighDistance;
     public char PLCInput1;
     public char PLCInput2;
+    public char PLCInput3;
+    public char PLCInput4;
     public int isPistonMoving;
     public int endIndex;
+    public int FrontEndIndex;
+    public int BackEndIndex;
     float time = 0;
     public int sensing;
     public float location;
+    public int isChange;
 
     void Awake()
     {
@@ -60,7 +66,81 @@ public class LoadingCylinder : MonoBehaviour
 
     void Update()
     {
-        
+        if (PLCInput1 == '1')
+        {
+            if (isPistonMoving == 0)
+            {
+                isPistonMoving = 1;
+                StartCoroutine(FrontPLCPistons());
+            }
+            if (location > distance && FrontEndIndex == 0)
+            {
+                FrontEndIndex = 1;
+                isChange = 1;
+            }
+        }
+        if (PLCInput1 == '0')
+        {
+            FrontEndIndex = 0;
+            isChange = 1;
+        }
+
+        if (PLCInput2 == '1')
+        {
+            if (isPistonMoving == 0)
+            {
+                isPistonMoving = 1;
+                StartCoroutine(BackPLCPistons());
+            }
+            if (location < 0 && BackEndIndex == 0)
+            {
+                BackEndIndex = 1;
+                isChange = 1;
+            }
+        }
+        if (PLCInput2 == '0')
+        {
+            BackEndIndex = 0;
+            isChange = 1;
+        }
+
+        if (PLCInput3 == '1')
+        {
+            if (isPistonMoving == 0)
+            {
+                isPistonMoving = 1;
+                StartCoroutine(FrontPLCPistonsHigh());
+            }
+            if (location > HighDistance && FrontEndIndex == 0)
+            {
+                FrontEndIndex = 1;
+                isChange = 1;
+            }
+        }
+        if (PLCInput3 == '0')
+        {
+            FrontEndIndex = 0;
+            isChange = 1;
+        }
+
+        if (PLCInput4 == '1')
+        {
+            if (isPistonMoving == 0)
+            {
+                isPistonMoving = 1;
+                StartCoroutine(BackPLCPistonsHigh());
+            }
+            if (location > HighDistance && FrontEndIndex == 0)
+            {
+                BackEndIndex = 1;
+                isChange = 1;
+            }
+        }
+        if (PLCInput4 == '0')
+        {
+            BackEndIndex = 0;
+            isChange = 1;
+        }
     }
 
     public void OnActivePistonBtnClkEvent()
@@ -111,7 +191,7 @@ public class LoadingCylinder : MonoBehaviour
         while (location <= distance)
         {
             location = location + _direction * speed;
-            piston.position = piston.position + direction * speed;
+            piston.localPosition = piston.localPosition + direction * speed;
             yield return new WaitForSeconds(0.01f);
         }
         isPistonMoving = 0;
@@ -122,7 +202,29 @@ public class LoadingCylinder : MonoBehaviour
         while (location >= 0)
         {
             location = location - _direction * speed;
-            piston.position = piston.position - direction * speed;
+            piston.localPosition = piston.localPosition - direction * speed;
+            yield return new WaitForSeconds(0.01f);
+        }
+        isPistonMoving = 0;
+    }
+
+    IEnumerator FrontPLCPistonsHigh()
+    {
+        while (location <= HighDistance)
+        {
+            location = location + _direction * speed;
+            piston.localPosition = piston.localPosition + direction * speed;
+            yield return new WaitForSeconds(0.01f);
+        }
+        isPistonMoving = 0;
+    }
+
+    IEnumerator BackPLCPistonsHigh()
+    {
+        while (location >= 0)
+        {
+            location = location - _direction * speed;
+            piston.localPosition = piston.localPosition - direction * speed;
             yield return new WaitForSeconds(0.01f);
         }
         isPistonMoving = 0;
