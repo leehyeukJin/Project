@@ -30,6 +30,7 @@ public class LoadingCylinder : MonoBehaviour
     public int sensing;
     public float location;
     public int isChange;
+    public int isActivate;
 
     void Awake()
     {
@@ -62,6 +63,8 @@ public class LoadingCylinder : MonoBehaviour
         sensing = 0;
         endIndex = 0;
         isPistonMoving = 0;
+        isChange = 0;
+        isActivate = 0;
     }
 
     void Update()
@@ -73,16 +76,24 @@ public class LoadingCylinder : MonoBehaviour
                 isPistonMoving = 1;
                 StartCoroutine(FrontPLCPistons());
             }
-            if (location > distance && FrontEndIndex == 0)
+            if (location == distance && FrontEndIndex == 0)
             {
                 FrontEndIndex = 1;
                 isChange = 1;
             }
+            if (isActivate == 0)
+            {
+                isActivate = 1;
+            }
         }
         if (PLCInput1 == '0')
         {
-            FrontEndIndex = 0;
-            isChange = 1;
+            if(isActivate == 1)
+            {
+                isActivate = 0;
+                FrontEndIndex = 0;
+                isChange = 1;
+            }
         }
 
         if (PLCInput2 == '1')
@@ -92,7 +103,7 @@ public class LoadingCylinder : MonoBehaviour
                 isPistonMoving = 1;
                 StartCoroutine(BackPLCPistons());
             }
-            if (location < 0 && BackEndIndex == 0)
+            if (location == 0 && BackEndIndex == 0)
             {
                 BackEndIndex = 1;
                 isChange = 1;
@@ -100,8 +111,12 @@ public class LoadingCylinder : MonoBehaviour
         }
         if (PLCInput2 == '0')
         {
-            BackEndIndex = 0;
-            isChange = 1;
+            if (isActivate == 1)
+            {
+                isActivate = 0;
+                BackEndIndex = 0;
+                isChange = 1;
+            }
         }
 
         if (PLCInput3 == '1')
@@ -111,7 +126,7 @@ public class LoadingCylinder : MonoBehaviour
                 isPistonMoving = 1;
                 StartCoroutine(FrontPLCPistonsHigh());
             }
-            if (location > HighDistance && FrontEndIndex == 0)
+            if (location == HighDistance && FrontEndIndex == 0)
             {
                 FrontEndIndex = 1;
                 isChange = 1;
@@ -119,8 +134,12 @@ public class LoadingCylinder : MonoBehaviour
         }
         if (PLCInput3 == '0')
         {
-            FrontEndIndex = 0;
-            isChange = 1;
+            if (isActivate == 1)
+            {
+                isActivate = 0;
+                FrontEndIndex = 0;
+                isChange = 1;
+            }
         }
 
         if (PLCInput4 == '1')
@@ -130,7 +149,7 @@ public class LoadingCylinder : MonoBehaviour
                 isPistonMoving = 1;
                 StartCoroutine(BackPLCPistonsHigh());
             }
-            if (location > HighDistance && FrontEndIndex == 0)
+            if (location == 0 && BackEndIndex == 0)
             {
                 BackEndIndex = 1;
                 isChange = 1;
@@ -138,8 +157,12 @@ public class LoadingCylinder : MonoBehaviour
         }
         if (PLCInput4 == '0')
         {
-            BackEndIndex = 0;
-            isChange = 1;
+            if(isActivate == 1)
+            {
+                isActivate = 0;
+                BackEndIndex = 0;
+                isChange = 1;
+            }
         }
     }
 
@@ -188,7 +211,7 @@ public class LoadingCylinder : MonoBehaviour
 
     IEnumerator FrontPLCPistons()
     {
-        while (location <= distance)
+        while (location < distance)
         {
             location = location + _direction * speed;
             piston.localPosition = piston.localPosition + direction * speed;
@@ -199,7 +222,7 @@ public class LoadingCylinder : MonoBehaviour
 
     IEnumerator BackPLCPistons()
     {
-        while (location >= 0)
+        while (location > 0)
         {
             location = location - _direction * speed;
             piston.localPosition = piston.localPosition - direction * speed;
@@ -210,7 +233,7 @@ public class LoadingCylinder : MonoBehaviour
 
     IEnumerator FrontPLCPistonsHigh()
     {
-        while (location <= HighDistance)
+        while (location < HighDistance)
         {
             location = location + _direction * speed;
             piston.localPosition = piston.localPosition + direction * speed;
@@ -221,7 +244,7 @@ public class LoadingCylinder : MonoBehaviour
 
     IEnumerator BackPLCPistonsHigh()
     {
-        while (location >= 0)
+        while (location > 0)
         {
             location = location - _direction * speed;
             piston.localPosition = piston.localPosition - direction * speed;
