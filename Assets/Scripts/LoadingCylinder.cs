@@ -142,7 +142,7 @@ public class LoadingCylinder : MonoBehaviour
 
     public void OnActivePistonBtnClkEvent()
     {
-        Origin = piston.position;
+        Origin = piston.localPosition;
         time = 0;
         print("Activate Cylinder");
         StartCoroutine(Pistons(direction, speed, distance));
@@ -150,7 +150,7 @@ public class LoadingCylinder : MonoBehaviour
 
     public void OnReversePistonBtnClkEvent()
     {
-        Origin = piston.position;
+        Origin = piston.localPosition;
         time = 0;
         print("Reverse Activate Cylinder");
         StartCoroutine(Pistons(-direction, speed, distance));
@@ -166,8 +166,8 @@ public class LoadingCylinder : MonoBehaviour
         while (location < distance)
         {
             location = location + _direction * speed;
-            piston.localPosition = piston.localPosition + direction * speed;
-            yield return new WaitForSeconds(0.01f);
+            piston.position = piston.position + direction * speed * Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
         }
         isPistonMoving = 0;
     }
@@ -177,8 +177,8 @@ public class LoadingCylinder : MonoBehaviour
         while (location > 0)
         {
             location = location - _direction * speed;
-            piston.localPosition = piston.localPosition - direction * speed;
-            yield return new WaitForSeconds(0.01f);
+            piston.position = piston.position - direction * speed * Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
         }
         isPistonMoving = 0;
     }
@@ -216,7 +216,7 @@ public class LoadingCylinder : MonoBehaviour
                 break;
             if (sensing == 1)
                 break;
-            piston.position = Vector3.Lerp(Origin, Origin + distance * direction, time * speed / distance);
+            piston.localPosition = Vector3.Lerp(Origin, Origin + distance * direction, time * speed / distance);
             yield return new WaitForSeconds(0.01f);
         }
         if (sensing == 1)
@@ -227,7 +227,7 @@ public class LoadingCylinder : MonoBehaviour
                 time -= 0.01f;
                 if (time <= 0)
                     break;
-                piston.position = Vector3.Lerp(Origin, Origin + distance * direction, time * speed / distance);
+                piston.localPosition = Vector3.Lerp(Origin, Origin + distance * direction, time * speed / distance);
                 yield return new WaitForSeconds(0.01f);
             }
         }

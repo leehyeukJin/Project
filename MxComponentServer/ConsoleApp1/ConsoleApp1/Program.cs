@@ -53,7 +53,6 @@ namespace MxComponentServer
                             }
                             if (splitOutput[1].Contains("D"))
                             {
-                                Console.WriteLine("ㅅㅂ");
                                 GetDDataBlock();
 
                                 buffer = Encoding.ASCII.GetBytes("D," + ddata);
