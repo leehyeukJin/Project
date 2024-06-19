@@ -46,6 +46,11 @@ public class MxComponent : MonoBehaviour
         
     }
 
+    public void OnDestroy()
+    {
+        DisconnectPLC();
+        DisconnectTCPServer();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -184,6 +189,12 @@ public class MxComponent : MonoBehaviour
         stream = client.GetStream();
         print("TCP 서버 연결 완료");
         isTCPConnecting = true;
+    }
+
+    public void DisconnectTCPServer()
+    {
+        Write("CS,");
+        isTCPConnecting = false;
     }
     public void ConnectPLC()
     {

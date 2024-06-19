@@ -1,0 +1,17 @@
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.exe
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.deps.json
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.runtimeconfig.json
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.dll
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.pdb
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\Interop.ActUtlType64Lib.dll
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.csproj.ResolveComReference.cache
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.AssemblyInfoInputs.cache
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.AssemblyInfo.cs
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.sourcelink.json
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.dll
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\refint\ConsoleApp1.dll
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.pdb
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.genruntimeconfig.cache
+C:\Users\제5강의실-20\Documents\GitHub\programming\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ref\ConsoleApp1.dll
