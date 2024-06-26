@@ -1,0 +1,17 @@
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\bin\Debug\net8.0\ConsoleApp1111.exe
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\bin\Debug\net8.0\ConsoleApp1111.deps.json
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\bin\Debug\net8.0\ConsoleApp1111.runtimeconfig.json
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\bin\Debug\net8.0\ConsoleApp1111.dll
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\bin\Debug\net8.0\ConsoleApp1111.pdb
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\obj\Debug\net8.0\Interop.ActUtlType64Lib.dll
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\obj\Debug\net8.0\ConsoleApp1111.csproj.ResolveComReference.cache
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\obj\Debug\net8.0\ConsoleApp1111.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\obj\Debug\net8.0\ConsoleApp1111.AssemblyInfoInputs.cache
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\obj\Debug\net8.0\ConsoleApp1111.AssemblyInfo.cs
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\obj\Debug\net8.0\ConsoleApp1111.csproj.CoreCompileInputs.cache
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\obj\Debug\net8.0\ConsoleApp1111.sourcelink.json
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\obj\Debug\net8.0\ConsoleApp1111.dll
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\obj\Debug\net8.0\refint\ConsoleApp1111.dll
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\obj\Debug\net8.0\ConsoleApp1111.pdb
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\obj\Debug\net8.0\ConsoleApp1111.genruntimeconfig.cache
+C:\Users\제5강의실-20\Documents\GitHub\Project\MxComponentServer\ConsoleApp1111\ConsoleApp1111\obj\Debug\net8.0\ref\ConsoleApp1111.dll

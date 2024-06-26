@@ -67,8 +67,8 @@ public class MxComponent : MonoBehaviour
                 Cylinder2.GetComponent<Cylinder>().PLCInput2 = yDataBlock[13];
                 Cylinder3.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[4];
                 Cylinder3.GetComponent<LoadingCylinder>().PLCInput2 = yDataBlock[14];
-                LoadingCylinderHY.GetComponent<LoadingCylinder>().PLCInput3 = yDataBlock[20];
-                LoadingCylinderHY.GetComponent<LoadingCylinder>().PLCInput4 = yDataBlock[30];
+                LoadingCylinderHY.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[20];
+                LoadingCylinderHY.GetComponent<LoadingCylinder>().PLCInput2 = yDataBlock[30];
                 LoadingCylinderX.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[21];
                 LoadingCylinderX.GetComponent<LoadingCylinder>().PLCInput2 = yDataBlock[31];
                 LoadingCylinderY.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[22];
