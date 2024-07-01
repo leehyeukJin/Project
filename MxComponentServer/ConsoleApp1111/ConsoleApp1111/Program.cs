@@ -18,7 +18,6 @@ namespace MxComponentServer
     {
         State state = State.Disconnected;
         static ActUtlType64 mxComponent;
-
         TcpListener listener;
         TcpClient client;
         NetworkStream stream;
@@ -207,10 +206,10 @@ namespace MxComponentServer
         {
             listener = new TcpListener(IPAddress.Any, 7000);
             listener.Start();
+            Console.WriteLine("Start TCP Server");
 
             client = listener.AcceptTcpClient();
             stream = client.GetStream();
-            Console.WriteLine("Start TCP Server");
         }
 
         void CloseTCPServer()
