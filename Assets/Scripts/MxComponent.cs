@@ -11,6 +11,7 @@ using UnityEngine.Windows;
 
 public class MxComponent : MonoBehaviour
 {
+    public static MxComponent instance;
     TcpClient client;
     NetworkStream stream;
     bool isTCPConnecting;
@@ -19,7 +20,6 @@ public class MxComponent : MonoBehaviour
     public GameObject Cylinder1;
     public GameObject Cylinder2;
     public GameObject Cylinder3;
-    public GameObject LoadingCylinderHY;
     public GameObject LoadingCylinderX;
     public GameObject LoadingCylinderY;
     public GameObject LoadingCylinderZ;
@@ -35,10 +35,17 @@ public class MxComponent : MonoBehaviour
     public GameObject Sensor8;
 
     public string preYDataBlock;
+    public string preDDataBlock;
     public string yDataBlock;
+    public string dDataBlock;
     public List<int> decimalNumbers = new List<int>();
     public bool isDReceived = false;
 
+    private void Awake()
+    {
+        if(instance == null)
+            instance = this;
+    }
     void Start()
     {
         isTCPConnecting = false;
@@ -57,6 +64,7 @@ public class MxComponent : MonoBehaviour
         if (isTCPConnecting && isPLCConnecting)
         {
             preYDataBlock = yDataBlock;
+            
             Write("R,");
             Read();
             if(preYDataBlock != yDataBlock)
@@ -65,10 +73,8 @@ public class MxComponent : MonoBehaviour
                 Cylinder1.GetComponent<Cylinder>().PLCInput2 = yDataBlock[12];
                 Cylinder2.GetComponent<Cylinder>().PLCInput1 = yDataBlock[3];
                 Cylinder2.GetComponent<Cylinder>().PLCInput2 = yDataBlock[13];
-                Cylinder3.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[4];
-                Cylinder3.GetComponent<LoadingCylinder>().PLCInput2 = yDataBlock[14];
-                LoadingCylinderHY.GetComponent<LoadingCylinder>().PLCInput3 = yDataBlock[20];
-                LoadingCylinderHY.GetComponent<LoadingCylinder>().PLCInput4 = yDataBlock[30];
+                Cylinder3.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[14];
+                Cylinder3.GetComponent<LoadingCylinder>().PLCInput2 = yDataBlock[4];
                 LoadingCylinderX.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[21];
                 LoadingCylinderX.GetComponent<LoadingCylinder>().PLCInput2 = yDataBlock[31];
                 LoadingCylinderY.GetComponent<LoadingCylinder>().PLCInput1 = yDataBlock[22];
@@ -88,11 +94,11 @@ public class MxComponent : MonoBehaviour
             Sensor(Sensor7, "X7");
             Sensor(Sensor8, "X8");
 
-            Transfer(LoadingCylinderHY, "X10", "X20");
+           /* Transfer(LoadingCylinderHY, "X10", "X20");
             Transfer(LoadingCylinderX, "X11", "X21");
             Transfer(LoadingCylinderY, "X12", "X22");
             Transfer(LoadingCylinderZ, "X13", "X23");
-            Transfer(Cylinder3, "X14", "X24");
+            Transfer(Cylinder3, "X14", "X24");*/
         }
     }
 
@@ -125,18 +131,26 @@ public class MxComponent : MonoBehaviour
             Transfer.GetComponent<LoadingCylinder>().isChange = 0;
         }
     }
+
+    public void Transfer(GameObject Transfer, string component1)
+    {
+        if (Transfer.GetComponent<LoadingCylinder>().isChange == 1)
+        {
+            Write($"W,{component1},{Transfer.GetComponent<LoadingCylinder>().FrontEndIndex},");
+            print($"W,{component1},{Transfer.GetComponent<LoadingCylinder>().FrontEndIndex},");
+            Transfer.GetComponent<LoadingCylinder>().isChange = 0;
+        }
+    }
     public void Read()
     {
         byte[] buffer = new byte[320];
         stream.Read(buffer, 0, 320);
-        yDataBlock = Encoding.ASCII.GetString(buffer);
-
-        if(yDataBlock.Contains("D"))
+        string dataBlock = Encoding.ASCII.GetString(buffer);
+        if (dataBlock.Contains("D"))
         {
-            yDataBlock = Encoding.ASCII.GetString(buffer);
-
+            dDataBlock = Encoding.ASCII.GetString(buffer);
             // 1. 16개 문자씩 자른다.
-            List<string> splitStrings = SplitString(yDataBlock.Substring(2), 16);
+            List<string> splitStrings = SplitString(dDataBlock.Substring(2), 16);
 
             // 2. 뒤집는다. (reverse)
             List<string> reversedStrings = ReverseStrings(splitStrings);
@@ -151,6 +165,12 @@ public class MxComponent : MonoBehaviour
             }
 
             isDReceived = true;
+            stream.Read(buffer);
+        }
+        else
+        {
+            //yDataBlock = dataBlock.Substring(2);
+            yDataBlock = dataBlock;
         }
     }
 
@@ -205,5 +225,10 @@ public class MxComponent : MonoBehaviour
     public void DisconnectPLC()
     {
         Write("DP,");
+    }
+
+    public static implicit operator MxComponent(LoadingCylinder v)
+    {
+        throw new NotImplementedException();
     }
 }

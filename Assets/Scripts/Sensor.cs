@@ -46,7 +46,7 @@ public class Sensor : MonoBehaviour
 
         if (name.Contains("Sensor8"))
         {
-            mxComponent.Write($"R,D22");
+            mxComponent.Write($"R,D22,T");
 
             StartCoroutine(CoSaveCoordinates());
         }
@@ -57,9 +57,9 @@ public class Sensor : MonoBehaviour
         yield return new WaitUntil(() => mxComponent.isDReceived == true);
 
 
-        mxComponent.LoadingCylinderHY.GetComponent<LoadingCylinder>().HighDistance = mxComponent.decimalNumbers[7];
-        mxComponent.Write($"W,{"X20"},{mxComponent.LoadingCylinderY.GetComponent<LoadingCylinder>().BackEndIndex},");
-        print($"W,{"X20"},{mxComponent.LoadingCylinderY.GetComponent<LoadingCylinder>().BackEndIndex},");
+        mxComponent.LoadingCylinderY.GetComponent<LoadingCylinder>().HighDistance = mxComponent.decimalNumbers[7];
+        /*mxComponent.Write($"W,{"X20"},{mxComponent.LoadingCylinderY.GetComponent<LoadingCylinder>().BackEndIndex},");
+        print($"W,{"X20"},{mxComponent.LoadingCylinderY.GetComponent<LoadingCylinder>().BackEndIndex},");*/
 
         /*  ÁÂÇ¥ ¿¹½Ã
         distance = mxComponent.decimalNumbers[0]; // D22 : »óÀÚ1 xÃà ÁÂÇ¥
@@ -85,7 +85,10 @@ public class Sensor : MonoBehaviour
         }
 
         mxComponent.isDReceived = false;
+
+        mxComponent.Write($"R,D22,F");
     }
+
 
     private void OnTriggerExit(Collider other)
     {

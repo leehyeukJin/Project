@@ -28,6 +28,7 @@ namespace MxComponentServer
         static int isGetYDataBlock = 0;
         static short[] yData = new short[32];
         static short[] dData = new short[20];
+        static int isGetDDataBlock = 0;
 
         public MxComopentServer()
         {
@@ -35,6 +36,7 @@ namespace MxComponentServer
             mxComponent.ActLogicalStationNumber = 1;
             StartTCPServer();
             new Thread(RepeatYThread).Start();
+            // new Thread(RepeatDThread).Start();
             while (true)
             {
                 int bytes;
@@ -51,7 +53,8 @@ namespace MxComponentServer
                                 buffer = Encoding.ASCII.GetBytes(ydata);
                                 stream.Write(buffer, 0, buffer.Length);
                             }
-                            if (splitOutput[1].Contains("D"))
+
+                            if (splitOutput[1].Contains("D") && splitOutput[2].Contains("T"))
                             {
                                 GetDDataBlock();
 
@@ -123,6 +126,18 @@ namespace MxComponentServer
                 }
             }
         }
+
+        static void RepeatDThread()
+        {
+            while (true)
+            {
+                if (isGetDDataBlock == 0)
+                {
+                    isGetDDataBlock = 1;
+                    GetDDataBlock();
+                }
+            }
+        }
         static void GetYDataBlock()
         {
             mxComponent.ReadDeviceBlock2("Y0", 32, out yData[0]);
@@ -145,10 +160,10 @@ namespace MxComponentServer
 
         static void GetDDataBlock()
         {
-            mxComponent.ReadDeviceBlock2("D22", 20, out dData[0]);
+            mxComponent.ReadDeviceBlock2("D22", 18, out dData[0]);
             Thread.Sleep(100);
             ddata = ConvertDDataIntoString(dData);
-            //isGetYDataBlock = 0;
+            isGetDDataBlock = 0;
         }
 
         static string ConvertDataIntoString(short[] data)

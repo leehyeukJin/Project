@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Box
   - Cylinder
+  - Cy1
+  - Cy2
+  - Cy3
+  - Cy4
+  - Cy5
   layers:
   - Default
   - TransparentFX
